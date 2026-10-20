@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bugatti — The Art of Engineering</title>
+  <meta name="description" content="An interactive, scroll-driven 3D study of a Bugatti-inspired hypercar: exterior, exploded view, engine, drivetrain, chassis, cockpit and the grand reassembly. Made by Jacob." />
+  <meta name="theme-color" content="#07080b" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%2307080b%27/%3E%3Cpath d=%27M10 24 C6 14 9 7 16 7 S26 14 22 24 Q16 26 10 24Z%27 fill=%27none%27 stroke=%27%23cdb68a%27 stroke-width=%272%27/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- loading -->
+  <div id="loader">
+    <div class="mark">BUGATTI</div>
+    <div class="sub">The Art of Engineering</div>
+    <div class="bar"><i></i></div>
+    <div class="step">Opening the studio</div>
+  </div>
+  <div id="veil"></div>
+
+  <canvas id="scene" aria-label="Interactive 3D hypercar. Drag to rotate the view."></canvas>
+  <div class="vignette"></div>
+
+  <!-- persistent interface -->
+  <header class="ui">
+    <div id="signature">Made by Jacob</div>
+    <div id="indicator"><span id="chapter-num">00 / 06</span><span class="rule"></span><span id="chapter-title">Prologue</span></div>
+  </header>
+  <button id="sound" class="ui-btn" aria-label="Toggle sound"><i></i><span>Sound off</span></button>
+  <button id="reset-view" class="ui-btn" aria-label="Reset view">Reset view</button>
+  <div id="hint">Scroll to discover</div>
+  <div id="progress"><i></i></div>
+
+  <svg id="callout-lines" aria-hidden="true"></svg>
+  <div id="callouts" aria-hidden="true"></div>
+
+  <!-- chapter text (opacity driven by scroll progress) -->
+  <main id="story">
+    <section class="panel hero" data-from="-0.2" data-to="0.05" data-fade="0.012">
+      <p class="eyebrow">The Art of Engineering <span>An interactive 3D experience</span></p>
+      <h1>Engineered<br />beyond ordinary.</h1>
+      <p class="lede">“Where extraordinary performance meets the art of automotive perfection.”</p>
+    </section>
+
+    <section class="panel side-left" data-from="0.058" data-to="0.104">
+      <p class="num">01 / The Exterior</p>
+      <h2>“Every surface serves a purpose.”</h2>
+      <p class="body">Slowly around the front quarter: the grille, the light signature, the intakes, the long sculpted flank and the aerodynamic tail.</p>
+    </section>
+
+    <section class="panel side-left exploded" data-from="0.198" data-to="0.322">
+      <h2 class="caps">Every detail.<br />Every decision.<br />Every component.</h2>
+      <p class="lede small">“Discover the engineering hidden beneath an extraordinary silhouette.”</p>
+    </section>
+    <aside class="panel stages" data-from="0.2" data-to="0.322">
+      <p class="num">Separation sequence</p>
+      <ol id="stages"></ol>
+    </aside>
+
+    <section class="panel side-left" data-from="0.328" data-to="0.376">
+      <p class="num">02 / The Engine</p>
+      <h2>“An extraordinary machine, engineered for extraordinary performance.”</h2>
+      <p class="spec"><span>8.0 L</span><span>W16</span><span>Four turbochargers</span></p>
+    </section>
+    <p class="panel note" data-from="0.328" data-to="0.462">Representative visualisation — the engine assembly is modelled for this experience and simplified; it is not factory geometry.</p>
+
+    <section class="panel side-left" data-from="0.468" data-to="0.566">
+      <p class="num">03 / Power Delivery</p>
+      <h2>“Power means nothing without precision.”</h2>
+      <p class="body">From the engine, torque passes through a seven-speed dual-clutch transmission. A share is sent rearward through the differential and half-shafts; the rest travels forward along a propeller shaft to the front axle — so all four wheels pull together.</p>
+    </section>
+
+    <section class="panel side-left control" data-from="0.575" data-to="0.668">
+      <p class="num">04 / Control</p>
+      <h2>“Performance is measured in more than speed.”</h2>
+      <p class="body">The front-left corner, separated along its axle. Select a component to inspect it.</p>
+      <div id="chips"></div>
+      <div id="chip-info"></div>
+    </section>
+
+    <section class="panel side-left" data-from="0.675" data-to="0.746">
+      <p class="num">05 / The Structure</p>
+      <h2>“Strength, rigidity, and intelligent material engineering.”</h2>
+      <p class="body">A carbon-fibre tub forms the core. Front and rear structures carry the suspension and powertrain; highlighted points mark where each system is mounted.</p>
+    </section>
+
+    <section class="panel side-left" data-from="0.752" data-to="0.836">
+      <p class="num">06 / The Cockpit</p>
+      <h2>“Precision engineering meets the art of craftsmanship.”</h2>
+    </section>
+
+    <section class="panel side-left" data-from="0.846" data-to="0.908">
+      <p class="num">The Grand Reassembly</p>
+      <h2>Structure first. Then the heart. Then every surface, in its place.</h2>
+    </section>
+
+    <section class="panel centre perfection" data-from="0.918" data-to="0.968" data-fade="0.012">
+      <h2 class="caps">Perfection is never<br />a single part.</h2>
+      <p class="lede">“It's how every part becomes something extraordinary.”</p>
+    </section>
+
+    <section class="panel finale" data-from="0.972" data-to="1.5" data-fade="0.012">
+      <h2>The Art of Engineering.</h2>
+      <p class="body">Every component has a purpose. Every detail has a place. Every decision contributes to the whole.</p>
+      <p class="signature">Made by Jacob</p>
+    </section>
+    <div class="panel finale-actions keep" data-from="0.972" data-to="1.5" data-fade="0.012">
+      <button id="again" class="btn">Experience again</button>
+      <button id="explore" class="btn ghost">Explore freely</button>
+    </div>
+    <p class="panel disclosure" data-from="0.972" data-to="1.5" data-fade="0.012">The vehicle shown is an original, procedurally modelled Bugatti-inspired hypercar created for this experience. It is a representative visualisation, not factory geometry or an official Bugatti model. Bugatti is a trademark of its owner; this is an independent, non-commercial tribute.</p>
+  </main>
+
+  <div class="fallback">
+    <p class="num">The Art of Engineering</p>
+    <h2>This experience requires WebGL.</h2>
+    <p class="body">Your browser or device has 3D graphics disabled. Enable hardware acceleration, or open the page in a current version of Chrome, Safari, Firefox or Edge, to explore the car.</p>
+  </div>
+
+  <div id="track"></div>
+  <script type="module" src="/src/boot.js"></script>
+</body>
+</html>

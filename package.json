@@ -1,0 +1,22 @@
+{
+  "name": "bugatti-art-of-engineering",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.0",
+    "vite": "^5.4.10"
+  },
+  "type": "module"
+}
