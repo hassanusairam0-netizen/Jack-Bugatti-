@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jack-bugatti.vercel.app/sitemap.xml
